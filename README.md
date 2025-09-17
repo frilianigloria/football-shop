@@ -1,5 +1,7 @@
 friliani-gloria-footballshop.pbp.cs.ui.ac.id
 
+<details>
+<Summary><b>Tugas 1</b></Summary>
 1. implementasi
 - Saya memulai dengan membuat project Django baru. Diawali dengan 
 mengaktifkan environment, kemudian menjalankan django-admin startproject football_shop .
@@ -39,3 +41,17 @@ karena framework django memiliki banyak fitur bawaan yang sangat berguna, memili
 
 6. feedback untuk asdos tutorial 1
 so far, saya belum ada feedback apapun untuk asisten dosen karena saya juga belum mengalami banyak masalah dalam pengerjaan tutorial.
+</details>
+
+
+<details>
+<Summary><b>Tugas 2</b></Summary>
+
+1. Data delivery dibutuhkan agar bisa ada pertukaran data antar sistem
+2. JSON lebih baik dan lebih populer karena formatntya lebih ringkas dan mudah dibaca, juga lebih ringan.
+3. is_valid() digunakan untuk validasi data yang dimasukkan user ke dalam form. tanpa itu, aplikasi bisa menerima input yang salah atau mungkin berbahaya.
+4. jika tidak ada csrf_token, penyerang bisa membuat form palsu di situs lain yang secara diam-diam mengirim permintaan ke aplikasi kita. dengan csrf_token, Django bisa memastikan request memang berasal dari form milik aplikasi kita, bukan dari pihak luar.
+5. saya mengimplementasikan dimulai dari menambahkan fungsi-fungsi views baru, kemudian membuat routing untuk URL untuk masing-masing views, membuat fitur add product, dimana saya membuat tombol add product yang membawa kita ke halaman form, kemudian membuat fitur untuk melihat detail product.
+6. tidak ada feedback.
+
+</details>
