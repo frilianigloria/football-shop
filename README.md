@@ -76,7 +76,39 @@ Otorisasi: pemberian akses setelah user terautentikasi. Diimplementasikan dengan
     Kelebihan   :   disimpan di client (tidak membebani server), lebih mudah untuk menyimpan preferensi user
     Kekurangan  :   rentan terhadap manipulasi jika tidak dienkripsi, ukurannya terbatas, tidak cocok untuk data sensitif
     
-4.
-penggunaan cookies memiliki potensi yang beresiko, seperti bisa dicuri lewat serangan XSS, bisa di-sniffing jika tidak menggunakan HTTPS, dan bisa dimodifikasi user. Django mengatasinya dengan beberapa cara salah satunya dengan menggunakan CSRF token.
+4. penggunaan cookies memiliki potensi yang beresiko, seperti bisa dicuri lewat serangan XSS, bisa di-sniffing jika tidak menggunakan HTTPS, dan bisa dimodifikasi user. Django mengatasinya dengan beberapa cara salah satunya dengan menggunakan CSRF token.
+
+5. tahapan:
+- register
+    > menggunakan UserCreationForm untuk form pendaftaran
+    > menambahkan register() di views.py -> render form & buat akun baru
+    > menambahkan register.html untuk tampilan form
+    > membuat url path untuk register
+
+- login
+    > menggunakan AuthenticationForm dan fungsi authenticate serta login
+    > menambahkan login_user() di views.py
+    > menambahkan login.html
+    > membuat url path untuk login
+
+- logout
+    > menambahkan logout_user() di views.py
+    > menambahkan button logout di main.html
+    > membuat url path untuk logout
+
+- restriksi akses
+    > menggunakan @login_required(login_url='/login') di show_main dan add_product agar halaman hanya bisa diakses user yang sudah login
+
+- cookies untuk last_login  
+    > menyimpan timestamp login di cookie last_login
+    > menampilkannya di main.html
+    > cookies dihapus saat logout
+
+- hubungkan model Product dengan User
+    > menambahkan field user
+    > set user saat add_product
+    > membuat filter berdasarkan user
+    > menambahkan tombol filter di main.html
+    > menampilkan author di product_detail.html
 
 </details>
