@@ -1,9 +1,9 @@
 friliani-gloria-footballshop.pbp.cs.ui.ac.id
 
 <details>
-<Summary><b>Tugas 1</b></Summary>
+<Summary><b>Tugas 2</b></Summary>
 1. implementasi
-- Saya memulai dengan membuat project Django baru. Diawali dengan 
+- Saya memulai dengan membuat project Django baru. Diawali dengan
 mengaktifkan environment, kemudian menjalankan django-admin startproject football_shop .
 - Kemudian saya membuat aplikasi baru bernama main. Di dalam folder main juga berisi file-file inti seperti models.py, views.py, sub-folder templates, dan lainnya.
 - kemudian saya tambahkan main ke INSTALLED-APPS pada settings.py
@@ -13,9 +13,9 @@ mengaktifkan environment, kemudian menjalankan django-admin startproject footbal
 - kemudian saya melakukan migrasi database.
 - terakhir, saya melakukan deployment ke PWS.
 
-
 2. ![Django MVT Architecture](images/image-1.png)
 alur:
+
 - client mengakses URL
 - request masuk ke urls.py project
 - Django mencari pola URLnya, kemudian mengarahkan ke fungsi di views.py pada aplikasi.
@@ -23,29 +23,25 @@ alur:
 - data dikirim ke template HTML untuk ditampilkan ke user
 - django mengembalikan HTTP Response ke browser client
 
-
 3. peran settings.py
 settings.py menyimpan konfigurasi global project, seperti daftar aplikasi, database yang dipakai, templates, dan lainnya. settings.py berisi pengaturan dasar project.
 
-
 4. cara kerja migrasi database
-saat kita ubah models.py, django belum langsung mengubah database. 
+saat kita ubah models.py, django belum langsung mengubah database.
 python manage.py makemigrations -> membuat file migrasi
-python manage.py migrate -> mengeksekusi file miggrasi ke database 
+python manage.py migrate -> mengeksekusi file miggrasi ke database
 migrasi membuat perubahan database terkontrol.
-
 
 5. mengapa Django?
 karena framework django memiliki banyak fitur bawaan yang sangat berguna, memiliki struktur yang jelas, dan menerapkan standar pengembangan yang rapi, mengajarkan pola pikir clean code apalagi untuk pemula. django juga sudah sangat populer dan memiliki dokumentasi yang cukup lengkap, jadi mudah dipelajari.
 
-
 6. feedback untuk asdos tutorial 1
 so far, saya belum ada feedback apapun untuk asisten dosen karena saya juga belum mengalami banyak masalah dalam pengerjaan tutorial.
+
 </details>
 
-
 <details>
-<Summary><b>Tugas 2</b></Summary>
+<Summary><b>Tugas 3</b></Summary>
 
 1. Data delivery dibutuhkan agar bisa ada pertukaran data antar sistem
 2. JSON lebih baik dan lebih populer karena formatntya lebih ringkas dan mudah dibaca, juga lebih ringan.
@@ -58,5 +54,29 @@ so far, saya belum ada feedback apapun untuk asisten dosen karena saya juga belu
 ![Postman - JSON](images/postman-json.png)
 ![Postman - XML by id](images/postman-xml-by-id.png)
 ![Postman - JSON by id](images/postman-json-by-id.png)
+
+</details>
+
+<details>
+<Summary><b>Tugas 4</b></Summary>
+
+1. 
+Django AuthenticationForm adalah form bawaan DJango yang digunakan untuk fitur login. Form ini otomatis menyediakan field username dan password, juga melakukan validasi. Kelebihan dari AuthenticationForm yaitu sudah terintegrasi dengan sistem autentikasi Django, validasi login sudah built-in, mendukung hashing password jadi aman, mudah digunakan karena cukup dipanggil tanpa harus menulis form dari awal. Di sisi lain, AuthenticationForm memiliki kekurangan yaitu kurang fleksibel jika butuh field tambahan (ex. OAuth seperti login dengan email atau OTP), styling terbatas (perlu dikustomisasi agar sesuai UI/UX), dan hanya cocok untuk skenario standar,tidak bisa untuk kebutuhan autentikasi kompleks.
+
+2. 
+Autentikasi: verifikasi identitas user. Diimplementasikan melalui django.contrib.auth, misal AuthenticationForm, login(), logout(), dan model User
+
+Otorisasi: pemberian akses setelah user terautentikasi. Diimplementasikan dengan melalui permission system dan decorator (ex: @login_required)
+
+3. 
+- Session
+    Kelebihan   :   data disimpan di server (lebih aman), bisa menyimpan data kompleks, tidak ter expose langsung ke client.
+    Kekurangan  :   server jadi membutuhkan tempat penyimpanan tambahan dan membutuhkan mekanisme cookies untuk menyimpan session ID.
+- Cookies
+    Kelebihan   :   disimpan di client (tidak membebani server), lebih mudah untuk menyimpan preferensi user
+    Kekurangan  :   rentan terhadap manipulasi jika tidak dienkripsi, ukurannya terbatas, tidak cocok untuk data sensitif
+    
+4.
+penggunaan cookies memiliki potensi yang beresiko, seperti bisa dicuri lewat serangan XSS, bisa di-sniffing jika tidak menggunakan HTTPS, dan bisa dimodifikasi user. Django mengatasinya dengan beberapa cara salah satunya dengan menggunakan CSRF token.
 
 </details>
