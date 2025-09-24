@@ -37,6 +37,7 @@ ALLOWED_HOSTS = ["localhost", "127.0.0.1", "friliani-gloria-footballshop.pbp.cs.
 CSRF_TRUSTED_ORIGINS = [
     "https://friliani-gloria-footballshop.pbp.cs.ui.ac.id"
 ]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -64,7 +65,7 @@ ROOT_URLCONF = 'football_shop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'], # Tambahkan konten baris ini
+        'DIRS': [BASE_DIR / 'templates'], 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

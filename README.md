@@ -14,7 +14,7 @@ mengaktifkan environment, kemudian menjalankan django-admin startproject footbal
 - terakhir, saya melakukan deployment ke PWS.
 
 
-2. ![alt text](image-1.png)
+2. ![Django MVT Architecture](images/image-1.png)
 alur:
 - client mengakses URL
 - request masuk ke urls.py project
@@ -53,5 +53,10 @@ so far, saya belum ada feedback apapun untuk asisten dosen karena saya juga belu
 4. jika tidak ada csrf_token, penyerang bisa membuat form palsu di situs lain yang secara diam-diam mengirim permintaan ke aplikasi kita. dengan csrf_token, Django bisa memastikan request memang berasal dari form milik aplikasi kita, bukan dari pihak luar.
 5. saya mengimplementasikan dimulai dari menambahkan fungsi-fungsi views baru, kemudian membuat routing untuk URL untuk masing-masing views, membuat fitur add product, dimana saya membuat tombol add product yang membawa kita ke halaman form, kemudian membuat fitur untuk melihat detail product.
 6. tidak ada feedback.
+
+![Postman - XML](images/postman-xml.png)
+![Postman - JSON](images/postman-json.png)
+![Postman - XML by id](images/postman-xml-by-id.png)
+![Postman - JSON by id](images/postman-json-by-id.png)
 
 </details>
