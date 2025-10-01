@@ -1,13 +1,53 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% block meta %} {% endblock meta %}
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block meta %}
+    <title>Football Shop</title>
+    {% endblock meta %}
 
-<body>
-    {% block content %} {% endblock content %}
+    <!-- ✅ Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- ✅ Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- ✅ Tailwind Config Override -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['DM Sans', 'sans-serif'],
+              heading: ['Poppins', 'sans-serif'],
+            },
+            colors: {
+              cream: '#FAF9F6',
+              dark: '#000000',
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- ✅ Favicon -->
+    <link rel="icon" href="{% static 'image/favicon.png' %}">
+</head>
+<body class="bg-cream text-dark font-sans min-h-screen flex flex-col">
+
+    <!-- 🧭 Main Content -->
+    <main class="flex-1">
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+    <!-- 🔚 Footer -->
+    <footer class="mt-16 py-8 text-center bg-white border-t border-gray-200">
+        <p class="text-sm text-gray-600">
+            © {{ now|date:"Y" }} <span class="font-heading font-semibold">Gloria</span> | PBP 2025/2026 
+        </p>
+    </footer>
 </body>
 </html>

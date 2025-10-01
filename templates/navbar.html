@@ -1,0 +1,88 @@
+<nav class="fixed top-0 left-0 w-full bg-cream text-dark shadow-md z-50 border-b border-gray-200">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      
+      <!-- 🏪 Logo -->
+      <div class="flex items-center space-x-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6l4 2" />
+        </svg>
+        <h1 class="text-xl font-heading font-bold tracking-wide">
+          <span class="text-dark">Football</span> <span class="font-light">Shop</span>
+        </h1>
+      </div>
+
+      <!-- 💻 Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="/" class="hover:text-gray-600 transition font-medium">Home</a>
+        <a href="{% url 'main:add_product' %}" class="hover:text-gray-600 transition font-medium">Add Product</a>
+      </div>
+
+      <!-- 👤 Desktop User Section -->
+      <div class="hidden md:flex items-center space-x-6">
+        {% if user.is_authenticated %}
+          <div class="text-right">
+            <div class="text-sm font-semibold">{{ name|default:user.username }}</div>
+            <div class="text-xs opacity-70">{{ npm|default:"Student" }} - {{ class|default:"Class" }}</div>
+          </div>
+          <a href="{% url 'main:logout' %}" class="bg-dark text-cream hover:bg-gray-800 font-medium px-3 py-1.5 rounded-lg transition">
+            Logout
+          </a>
+        {% else %}
+          <a href="{% url 'main:login' %}" class="hover:text-gray-600 transition font-medium">Login</a>
+          <a href="{% url 'main:register' %}" class="bg-dark text-cream hover:bg-gray-800 font-medium px-4 py-2 rounded-lg transition">
+            Register
+          </a>
+        {% endif %}
+      </div>
+
+      <!-- 📱 Mobile Menu Button -->
+      <div class="md:hidden flex items-center">
+        <button class="mobile-menu-button p-2 rounded-md hover:bg-gray-100 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 📱 Mobile Menu -->
+  <div class="mobile-menu hidden md:hidden bg-cream text-dark border-t border-gray-200">
+    <div class="px-6 py-4 space-y-4">
+      <!-- Links -->
+      <div class="space-y-2">
+        <a href="/" class="block py-2 font-medium hover:text-gray-600 transition">Home</a>
+        <a href="{% url 'main:add_product' %}" class="block py-2 font-medium hover:text-gray-600 transition">Add Product</a>
+      </div>
+
+      <!-- User Section -->
+      <div class="border-t pt-4">
+        {% if user.is_authenticated %}
+          <div class="mb-3">
+            <div class="font-semibold">{{ name|default:user.username }}</div>
+            <div class="text-sm text-gray-500">{{ npm|default:"Student" }} - {{ class|default:"Class" }}</div>
+          </div>
+          <a href="{% url 'main:logout' %}" class="block text-center bg-dark hover:bg-gray-800 text-cream font-medium py-2 rounded-md transition">
+            Logout
+          </a>
+        {% else %}
+          <div class="space-y-2">
+            <a href="{% url 'main:login' %}" class="block text-center font-medium hover:text-gray-600 transition">Login</a>
+            <a href="{% url 'main:register' %}" class="block text-center bg-dark hover:bg-gray-800 text-cream font-medium py-2 rounded-md transition">
+              Register
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const btn = document.querySelector(".mobile-menu-button");
+    const menu = document.querySelector(".mobile-menu");
+    btn.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+    });
+  </script>
+</nav>
