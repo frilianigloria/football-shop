@@ -112,3 +112,46 @@ Otorisasi: pemberian akses setelah user terautentikasi. Diimplementasikan dengan
     > menampilkan author di product_detail.html
 
 </details>
+
+<details>
+<Summary><b>Tugas 5</b></Summary>
+
+**1.** Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+
+> **A:** Urutan prioritas adalah sebagai berikut:
+> * Inline Style : ditempatkan langsung di elemen HTML 
+> * Internal Style Sheet : ditempatkan di tag `<style>` dalam `<head>`
+> * External Style Sheet : dihubungkan melalui tag `<link>`
+> * Browser Default : style bawaan browser
+
+
+**2.** Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design, serta jelaskan mengapa!
+
+> **A:** responsive design penting karena kebanyakan user mengakses web lewat mobile dan juga karena untuk memastikan user experience yang optimal di berbagai ukuran layar. 
+Contoh yang sudah responsif web e-commerce modern seperti tokopedia dan amazon. Tampilannya rapi dan berubah dari grid di dekstop menjadi tumpukan di mobile.
+Contoh yang belum responsif adalah aplikasi yang tampilan desktopnya dipaksakan ke layar mobile, perlu zoom dan scroll untuk mengakses fitur-fitur.
+
+
+**3.** Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+
+> **A:** 
+> * Margin adalah jarak antar border elemen dengan elemen lain di sekitarnya. Margin digunakan untuk mengontrol ruang di luar elemen, agar ada pemisah antara elemen yang berbeda.
+> * Border adalah garis yang mengelilingi padding dan konten elemen. Fungsinya untuk memvisualisasikan batas luar elemen.
+> * Padding adalah jarak antar konten elemen (teks, gambar) dan bordernya. Fungsinya untuk mengontrol ruang di dalam elemen.
+
+
+**4.** Jelaskan konsep flex box dan grid layout beserta kegunaannya!
+
+> **A:** 
+> * flexbox adalah sistem tata letak satu dimensi. ini berfokus pada distribusi ruang dan penyejajaran item di sepanjang satu sumbu pada satu waktu: baik horizontal maupun vertikal. Kegunaannya ideal untuk komponen kecil seperti navbar, buttons, penempatan item di dalam sebuah kotak.
+> * grid layout adalah sistem tata letak dua dimensi yang memungkinkan pengaturan tata letak dalam baris dan kolom. kegunaannya ideal untuk tata letak halaman yang lebih besar dan kompleks, seperti struktur keseluruhan page web.
+
+
+**5.** Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+
+> **A:**
+> * membuat fungsi untuk edit dan delete produk di views.py, juga menambahkan url path nya di urls.py. juga menambahkan button edit & delete
+> * kustomisasi desain web dengan css tailwind. mengubah desain halaman-halaman berikut: login, register, add_product, edit_product, detail_product, dan desain main juga card product.
+> * membuat navigation bar yang responsif untuk di desktop dan mobile.
+
+</details>
