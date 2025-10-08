@@ -1,6 +1,6 @@
 ## friliani-gloria-footballshop.pbp.cs.ui.ac.id
 
-* * *
+
 
 <details>
 <Summary><b>Tugas 2</b></Summary>
@@ -165,7 +165,15 @@ Contoh yang belum responsif adalah aplikasi yang tampilan desktopnya dipaksakan 
 <details>
 <Summary><b>Tugas 6</b></Summary>
 
+1. Synchronous request adalah permintaan ke server yang membuat pengguna harus menunggu sampai server memberikan respons sebelum bisa berinteraksi lagi dengan halaman. Sebaliknya, asynchronous request memungkinkan permintaan dikirim ke server di tanpa menghentikan aktivitas user di halaman tersebut. 
+   
+2. AJAX bekerja dengan cara JavaScript di sisi client mengirim request ke URL tertentu tanpa harus reload halaman. Request tersebut diterima oleh view Django yang kemudian memproses data dan mengembalikan respons dalam bentuk JSON. Data ini lalu digunakan oleh JavaScript  untuk memperbarui tampilan secara dinamis.
 
+3. Keuntungannya ada pada efisiensi dan pengalaman user yang lebih baik. Karena hanya sebagian kecil data yang dikirim dan diperbarui, prosesnya menjadi lebih cepat, interaktif, dan tidak membebani server atau pengguna dengan reload halaman penuh.
+
+4. Menjaga keamanan, terutama pada fitur login dan register, yaitu dengan pengguna AJAX harus disertai validasi di server, pengiriman CSRF token, serta komunikasi melalui HTTPS. Django sudah menyediakan perlindungan CSRF secara bawaan, sehingga penting untuk memastikan token tersebut ikut dikirim dalam setiap request POST.
+   
+5. Secara keseluruhan, penggunaan AJAX meningkatkan pengalaman user karena membuat website terasa lebih responsif, cepat, dan interaktif, layaknya aplikasi modern yang berjalan tanpa gangguan dari reload halaman sepenuhnya.
 
 </details>
 

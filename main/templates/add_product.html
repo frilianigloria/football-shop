@@ -8,7 +8,14 @@
 {% block content %}
 <div class="bg-cream min-h-screen w-full pt-24 pb-16">
   <div class="max-w-3xl mx-auto px-6 lg:px-8">
-    
+
+    <!-- Contoh Toast -->
+    <button
+      onclick="showToast('Sample Title', 'This is a sample message for the toast notification.')"
+    >
+      Click to Show Toast
+    </button>
+
     <!-- 🔙 Back Button -->
     <div class="mb-8">
       <a href="{% url 'main:show_main' %}" 
