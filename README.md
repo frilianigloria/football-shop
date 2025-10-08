@@ -1,44 +1,44 @@
-friliani-gloria-footballshop.pbp.cs.ui.ac.id
+## friliani-gloria-footballshop.pbp.cs.ui.ac.id
+
+* * *
 
 <details>
 <Summary><b>Tugas 2</b></Summary>
+
 1. implementasi
-- Saya memulai dengan membuat project Django baru. Diawali dengan
-mengaktifkan environment, kemudian menjalankan django-admin startproject football_shop .
-- Kemudian saya membuat aplikasi baru bernama main. Di dalam folder main juga berisi file-file inti seperti models.py, views.py, sub-folder templates, dan lainnya.
-- kemudian saya tambahkan main ke INSTALLED-APPS pada settings.py
-- selanjutnya saya membuat model Product dan menambahkan atribut wajib (name, price, description, thumbnail, category, is_featured), dengan tipe yang sudah ditentukan juga, pada models.py.
-- kemudian saya membuat fungsi pada views.py yang akan dikembalikan ke template html. saya juga menambahkan template html untuk menampilkan data dari view ke browser.
-- selanjutnya saya membuat sebuah routing pada urls.py.
-- kemudian saya melakukan migrasi database.
-- terakhir, saya melakukan deployment ke PWS.
+   - [ ] Saya memulai dengan membuat project Django baru. Diawali dengan mengaktifkan environment, kemudian menjalankan `django-admin startproject football_shop .`
+   - [ ] Kemudian saya membuat aplikasi baru bernama `main`. Di dalam folder `main` juga berisi file-file inti seperti `models.py`, `views.py`, sub-folder `templates`, dan lainnya.
+   - [ ] kemudian saya tambahkan `main` ke `INSTALLED-APPS` pada `settings.py`
+   - [ ] selanjutnya saya membuat model Product dan menambahkan atribut wajib (name, price, description, thumbnail, category, is_featured), dengan tipe yang sudah ditentukan juga, pada `models.py`.
+   - [ ] kemudian saya membuat fungsi pada `views.py` yang akan dikembalikan ke template html. saya juga menambahkan template html untuk menampilkan data dari view ke browser.
+   - [ ] selanjutnya saya membuat sebuah routing pada `urls.py`.
+   - [ ] kemudian saya melakukan migrasi database.
+   - [ ] terakhir, saya melakukan deployment ke PWS.
 
 2. ![Django MVT Architecture](images/image-1.png)
-alur:
+   Alur:
 
-- client mengakses URL
-- request masuk ke urls.py project
-- Django mencari pola URLnya, kemudian mengarahkan ke fungsi di views.py pada aplikasi.
-- fungsi di views.py bisa mengambil atau mengolah data dari models.py
-- data dikirim ke template HTML untuk ditampilkan ke user
-- django mengembalikan HTTP Response ke browser client
+   - client mengakses URL
+   - request masuk ke `urls.py` project
+   - Django mencari pola URLnya, kemudian mengarahkan ke fungsi di `views.py` pada aplikasi.
+   - fungsi di `views.py` bisa mengambil atau mengolah data dari `models.py`.
+   - data dikirim ke template HTML untuk ditampilkan ke user
+   - django mengembalikan HTTP Response ke browser client
 
-3. peran settings.py
-settings.py menyimpan konfigurasi global project, seperti daftar aplikasi, database yang dipakai, templates, dan lainnya. settings.py berisi pengaturan dasar project.
+3. `settings.py` menyimpan konfigurasi global project, seperti daftar aplikasi, database yang dipakai, templates, dan lainnya. `settings.py` berisi pengaturan dasar project.
 
-4. cara kerja migrasi database
-saat kita ubah models.py, django belum langsung mengubah database.
-python manage.py makemigrations -> membuat file migrasi
-python manage.py migrate -> mengeksekusi file miggrasi ke database
-migrasi membuat perubahan database terkontrol.
+4. * Saat kita ubah `models.py`, django belum langsung mengubah database.
+   * python manage.py makemigrations -> membuat file migrasi
+   * python manage.py migrate -> mengeksekusi file miggrasi ke database
+   * migrasi membuat perubahan database terkontrol.
 
-5. mengapa Django?
-karena framework django memiliki banyak fitur bawaan yang sangat berguna, memiliki struktur yang jelas, dan menerapkan standar pengembangan yang rapi, mengajarkan pola pikir clean code apalagi untuk pemula. django juga sudah sangat populer dan memiliki dokumentasi yang cukup lengkap, jadi mudah dipelajari.
+5. Karena framework django memiliki banyak fitur bawaan yang sangat berguna, memiliki struktur yang jelas, dan menerapkan standar pengembangan yang rapi, mengajarkan pola pikir clean code apalagi untuk pemula. django juga sudah sangat populer dan memiliki dokumentasi yang cukup lengkap, jadi mudah dipelajari.
 
-6. feedback untuk asdos tutorial 1
-so far, saya belum ada feedback apapun untuk asisten dosen karena saya juga belum mengalami banyak masalah dalam pengerjaan tutorial.
+6. So far, saya belum ada feedback apapun untuk asisten dosen karena saya juga belum mengalami banyak masalah dalam pengerjaan tutorial.
 
 </details>
+
+<br />
 
 <details>
 <Summary><b>Tugas 3</b></Summary>
@@ -56,6 +56,8 @@ so far, saya belum ada feedback apapun untuk asisten dosen karena saya juga belu
 ![Postman - JSON by id](images/postman-json-by-id.png)
 
 </details>
+
+<br />
 
 <details>
 <Summary><b>Tugas 4</b></Summary>
@@ -80,38 +82,40 @@ Otorisasi: pemberian akses setelah user terautentikasi. Diimplementasikan dengan
 
 5. tahapan:
 - register
-    > menggunakan UserCreationForm untuk form pendaftaran
-    > menambahkan register() di views.py -> render form & buat akun baru
-    > menambahkan register.html untuk tampilan form
-    > membuat url path untuk register
+    * menggunakan UserCreationForm untuk form pendaftaran
+    * menambahkan register() di views.py -> render form & buat akun baru
+    * menambahkan register.html untuk tampilan form
+    * membuat url path untuk register
 
 - login
-    > menggunakan AuthenticationForm dan fungsi authenticate serta login
-    > menambahkan login_user() di views.py
-    > menambahkan login.html
-    > membuat url path untuk login
+    * menggunakan AuthenticationForm dan fungsi authenticate serta login
+    * menambahkan login_user() di views.py
+    * menambahkan login.html
+    * membuat url path untuk login
 
 - logout
-    > menambahkan logout_user() di views.py
-    > menambahkan button logout di main.html
-    > membuat url path untuk logout
+    * menambahkan logout_user() di views.py
+    * menambahkan button logout di main.html
+    * membuat url path untuk logout
 
 - restriksi akses
-    > menggunakan @login_required(login_url='/login') di show_main dan add_product agar halaman hanya bisa diakses user yang sudah login
+    * menggunakan @login_required(login_url='/login') di show_main dan add_product agar halaman hanya bisa diakses user yang sudah login
 
 - cookies untuk last_login  
-    > menyimpan timestamp login di cookie last_login
-    > menampilkannya di main.html
-    > cookies dihapus saat logout
+    * menyimpan timestamp login di cookie last_login
+    * menampilkannya di main.html
+    * cookies dihapus saat logout
 
 - hubungkan model Product dengan User
-    > menambahkan field user
-    > set user saat add_product
-    > membuat filter berdasarkan user
-    > menambahkan tombol filter di main.html
-    > menampilkan author di product_detail.html
+    * menambahkan field user
+    * set user saat add_product
+    * membuat filter berdasarkan user
+    * menambahkan tombol filter di main.html
+    * menampilkan author di product_detail.html
 
 </details>
+
+<br />
 
 <details>
 <Summary><b>Tugas 5</b></Summary>
@@ -155,3 +159,14 @@ Contoh yang belum responsif adalah aplikasi yang tampilan desktopnya dipaksakan 
 > * membuat navigation bar yang responsif untuk di desktop dan mobile.
 
 </details>
+
+<br />
+
+<details>
+<Summary><b>Tugas 6</b></Summary>
+
+
+
+</details>
+
+<br />
