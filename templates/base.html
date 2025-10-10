@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block meta %}
-    <title>Football Shop</title>
+    <title>GearUp Store</title>
     {% endblock meta %}
 
     <!-- ✅ Tailwind CSS -->
@@ -46,9 +46,10 @@
     <!-- 🔚 Footer -->
     <footer class="mt-16 py-8 text-center bg-white border-t border-gray-200">
         <p class="text-sm text-gray-600">
-            © {{ now|date:"Y" }} <span class="font-heading font-semibold">Gloria</span> | PBP 2025/2026 
+            © {{ now|date:"Y" }} <span class="font-heading font-semibold">Gloria</span> | PBP B 2025/2026 
         </p>
     </footer>
     {% include 'toast.html' %}
+    {% include 'modal.html' %}
 </body>
 </html>
