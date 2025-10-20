@@ -89,13 +89,14 @@ def show_json(request):
     data = [
         {
             'id': str(product.id),
-            'title': product.title,
-            'content': product.content,
+            'name': product.name,
+            'description': product.description,
             'category': product.category,
             'thumbnail': product.thumbnail,
             'product_views': product.product_views,
-            'created_at': product.created_at.isoformat() if product.created_at else None,
+            'added_at': product.added_at.isoformat() if product.added_at else None,
             'is_featured': product.is_featured,
+            'user': product.user,
             'user_id': product.user_id,
         }
         for product in product_list
@@ -120,11 +121,12 @@ def show_json_by_id(request, product_id):
             'description': product.description,
             'category': product.category,
             'thumbnail': product.thumbnail,
-            'product_views': product.news_views,
-            'added_at': product.created_at.isoformat() if product.created_at else None,
+            'product_views': product.product_views,
+            'added_at': product.added_at.isoformat() if product.added_at else None,
             'is_featured': product.is_featured,
+            'user': product.user,
             'user_id': product.user_id,
-            'user_username': product.user.username if product.user_id else None,
+            'user_username': product.user.username if product.user else None,
         }
         return JsonResponse(data)
     except Product.DoesNotExist:
