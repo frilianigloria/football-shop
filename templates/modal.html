@@ -19,6 +19,7 @@
     <!-- Modal body -->
     <div class="px-6 py-4 space-y-6 form-style">
       <form id="productForm">
+        {% csrf_token %}
         <div class="mb-4">
           <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
           <input type="text" id="name" name="name" class="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2" placeholder="Enter product name" required>
@@ -58,52 +59,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  function showModal() {
-      const modal = document.getElementById('crudModal');
-      const modalContent = document.getElementById('crudModalContent');
-
-      modal.classList.remove('hidden'); 
-      setTimeout(() => {
-        modalContent.classList.remove('opacity-0', 'scale-95');
-        modalContent.classList.add('opacity-100', 'scale-100');
-      }, 50); 
-  }
-
-  function hideModal() {
-      const modal = document.getElementById('crudModal');
-      const modalContent = document.getElementById('crudModalContent');
-
-      modalContent.classList.remove('opacity-100', 'scale-100');
-      modalContent.classList.add('opacity-0', 'scale-95');
-
-      setTimeout(() => {
-        modal.classList.add('hidden');
-      }, 150); 
-  }
-
-  async function addProductEntry() {
-    await fetch("{% url 'main:add_product_entry_ajax' %}", {
-      method: "POST",
-      body: new FormData(document.querySelector('#productForm')),
-    })
-
-    document.getElementById("productForm").reset();
-    hideModal();
-      
-    // Show toast notification
-    showToast('Product added successfully!', '', 'success');
-
-    // Dispatch custom event to notify main.html about new data
-    document.dispatchEvent(new CustomEvent('productAdded'));
-
-    return false;
-  }
-
-  document.getElementById("productForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    addProductEntry();
-  })
-
-</script>

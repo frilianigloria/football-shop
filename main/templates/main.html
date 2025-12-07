@@ -107,6 +107,83 @@
 </div>
 
 <script>
+
+  function showModal() {
+      const modal = document.getElementById('crudModal');
+      const modalContent = document.getElementById('crudModalContent');
+
+      modal.classList.remove('hidden'); 
+      setTimeout(() => {
+        modalContent.classList.remove('opacity-0', 'scale-95');
+        modalContent.classList.add('opacity-100', 'scale-100');
+      }, 50); 
+  }
+
+  function hideModal() {
+      const modal = document.getElementById('crudModal');
+      const modalContent = document.getElementById('crudModalContent');
+
+      modalContent.classList.remove('opacity-100', 'scale-100');
+      modalContent.classList.add('opacity-0', 'scale-95');
+
+      setTimeout(() => {
+        modal.classList.add('hidden');
+      }, 150); 
+  }
+
+  // async function addProductEntry() {
+  //   await fetch("{% url 'main:add_product_entry_ajax' %}", {
+  //     method: "POST",
+  //     body: new FormData(document.querySelector('#productForm')),
+  //   })
+
+  //   document.getElementById("productForm").reset();
+  //   hideModal();
+      
+  //   // Show toast notification
+  //   showToast('Product added successfully!', '', 'success');
+
+  //   // Dispatch custom event to notify main.html about new data
+  //   document.dispatchEvent(new CustomEvent('productAdded'));
+
+  //   return false;
+  // }
+
+  async function addProductEntry() {
+  const form = document.querySelector('#productForm');
+  const response = await fetch("{% url 'main:add_product_entry_ajax' %}", {
+    method: "POST",
+    body: new FormData(form),
+  });
+
+  // Cek apakah response berhasil (status 200-299)
+  if (response.ok) {
+    // Diasumsikan endpoint mengembalikan JSON
+    // const data = await response.json(); 
+    
+    document.getElementById("productForm").reset();
+    hideModal();
+    
+    // Tampilkan notifikasi sukses
+    showToast('🚀 Product added successfully!', '', 'success');
+
+    // Dispatch custom event ke main.html
+    document.dispatchEvent(new CustomEvent('productAdded'));
+  } else {
+    // Coba baca error body (jika ada) untuk debugging
+    try {
+        const errorText = await response.text();
+        console.error('AJAX submission failed:', response.status, response.statusText, 'Response Body:', errorText);
+    } catch (e) {
+        console.error('AJAX submission failed:', response.status, response.statusText);
+    }
+    
+    // Tampilkan notifikasi error
+    showToast('❌ Failed to add product. Check required fields or login status.', '', 'error');
+  }
+
+  }
+
 // Configuration
 const PRODUCT_API_ENDPOINT = "{% url 'main:show_json' %}";
 const CURRENT_USER_ID = "{{ user.id|default_if_none:'' }}";
@@ -315,8 +392,20 @@ initializeProductPage();
 
 // Add event listener to detect new product
 document.addEventListener('productAdded', function() {
+    console.log('Product added event received. Reloading product list...');
     // Refresh data without page reload
     fetchProductFromServer();
+});
+
+// Add event listener to detect new product 
+document.addEventListener('productAdded', function() {
+    console.log('Product added event received. Reloading product list...');
+    fetchProductFromServer();
+});
+
+document.getElementById("productForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    addProductEntry();
 });
 
 </script>
