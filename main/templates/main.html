@@ -3,18 +3,18 @@
 
 {% block meta %}
 <title>Football Shop</title>
-<!-- ✅ Google Fonts -->
+<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
 {% endblock meta %}
 
 {% block content %}
 {% include 'navbar.html' %}
 
-<!-- 🌿 Background cream -->
+<!-- Background cream -->
 <div class="bg-[#FAF9F6] text-[#1A1A1A] w-full pt-16 min-h-screen font-['DM_Sans']">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-    <!-- 🧭 Header Section -->
+    <!--  Header Section -->
     <div class="mb-8 text-center sm:text-left">
       <h1 class="text-3xl font-['Poppins'] font-bold mb-2">
         ⚡ Game On, Champion!
@@ -32,7 +32,7 @@
     <!-- 🧼 Filter Section -->
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
       <div class="flex space-x-3 mb-4 sm:mb-0">
-        <a href="?"
+        <a href="?" id="filter-all"
            class="px-4 py-2 rounded-md font-medium transition-colors
            {% if request.GET.filter == 'all' or not request.GET.filter %}
              bg-black text-white
@@ -41,7 +41,7 @@
            {% endif %}">
           All Products
         </a>
-        <a href="?filter=my"
+        <a href="?filter=my" id="filter-my"
            class="px-4 py-2 rounded-md font-medium transition-colors
            {% if request.GET.filter == 'my' %}
              bg-black text-white
@@ -112,7 +112,7 @@ const PRODUCT_API_ENDPOINT = "{% url 'main:show_json' %}";
 const CURRENT_USER_ID = "{{ user.id|default_if_none:'' }}";
 
 // DOM Elements
-const loadingSpinner = document.getElementById('loading');
+const loadingSpinner = document.getElementById('loading-state');
 const errorMessage = document.getElementById('error');
 const emptyStateDisplay = document.getElementById('empty');
 const productGridContainer = document.getElementById('grid');
@@ -120,8 +120,17 @@ const showAllProductButton = document.getElementById('filter-all');
 const showMyProductButton = document.getElementById('filter-my');
 
 // State Variables
-let activeFilter = 'all';
+// let activeFilter = 'all';
 let allProductData = [];
+
+// Fungsi untuk mendapatkan filter dari URL saat inisialisasi
+function getInitialFilter() {
+    const params = new URLSearchParams(window.location.search);
+    // Jika URL mengandung ?filter=my, kembalikan 'my', jika tidak, kembalikan 'all'
+    return params.get('filter') === 'my' ? 'my' : 'all';
+}
+
+let activeFilter = getInitialFilter(); // <-- Tentukan filter berdasarkan URL
 
 // Update filter button appearance
 function updateFilterButtonsAppearance() {
@@ -182,7 +191,7 @@ function buildProductCardElement(productItem) {
   const isHot = productItem.product_views > 20;
 
   const thumbnailHtml = productItem.thumbnail 
-    ? `<img src='${productItem.thumbnail}' alt='${productItem.title}' class='w-full h-full object-cover'>` 
+    ? `<img src='${productItem.thumbnail}' alt='${productItem.name}' class='w-full h-full object-cover'>` 
     : `<div class='w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center'></div>`;
 
   const featuredBadge = isFeatured 
@@ -195,7 +204,7 @@ function buildProductCardElement(productItem) {
   const editDeleteButtons = CURRENT_USER_ID && Number(CURRENT_USER_ID) === Number(productItem.user_id)
     ? `<div class='flex space-x-2'>
         <a href='${editLink}' class='text-gray-600 hover:text-gray-700 text-sm transition-colors'>Edit</a>
-        <a href='${deleteLink}' class='text-red-600 hover:text-red-700 text-sm transition-colors' onclick='return confirm("Are you sure you want to delete this article?")'>Delete</a>
+        <a href='${deleteLink}' class='text-red-600 hover:text-red-700 text-sm transition-colors' onclick='return confirm("Are you sure you want to delete this product?")'>Delete</a>
       </div>`
     : '';
 
@@ -217,9 +226,9 @@ function buildProductCardElement(productItem) {
         <span>${productItem.product_views} views</span>
       </div>
       <h3 class="text-lg font-semibold text-gray-900 mb-3 line-clamp-2 leading-tight">
-        <a href="${detailLink}" class="hover:text-green-600 transition-colors">${productItem.title}</a>
+        <a href="${detailLink}" class="hover:text-green-600 transition-colors">${productItem.name}</a>
       </h3>
-      <p class="text-gray-600 text-sm leading-relaxed line-clamp-3 mb-4">${productItem.content}</p>
+      <p class="text-gray-600 text-sm leading-relaxed line-clamp-3 mb-4">${productItem.description}</p>
       <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
         <a href="${detailLink}" class="text-green-600 hover:text-green-700 font-medium text-sm transition-colors">Read more</a>
         ${editDeleteButtons}
@@ -280,12 +289,14 @@ async function fetchProductFromServer() {
 }
 
 // Event handlers
-function handleShowAllProductClick() {
+function handleShowAllProductClick(e) {
+  e.preventDefault();
   activeFilter = 'all';
   filterAndDisplayProduct();
 }
 
-function handleShowMyProductClick() {
+function handleShowMyProductClick(e) {
+  e.preventDefault();
   activeFilter = 'my';
   filterAndDisplayProduct();
 }
@@ -295,11 +306,19 @@ function initializeProductPage() {
   showAllProductButton.addEventListener('click', handleShowAllProductClick);
   showMyProductButton.addEventListener('click', handleShowMyProductClick);
   
+  updateFilterButtonsAppearance();
   fetchProductFromServer();
 }
 
 // Start application
 initializeProductPage();
+
+// Add event listener to detect new product
+document.addEventListener('productAdded', function() {
+    // Refresh data without page reload
+    fetchProductFromServer();
+});
+
 </script>
 
 {% endblock content %}

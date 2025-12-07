@@ -42,7 +42,7 @@
             <p class="text-gray-600">Mohon coba lagi nanti atau periksa ketersediaan produk.</p>
         </div>
         
-        <article id="article-content" class="bg-white rounded-2xl shadow-xl overflow-hidden p-6 sm:p-10 border border-[#E5E0D8]">
+        <article id="product-description" class="bg-white rounded-2xl shadow-xl overflow-hidden p-6 sm:p-10 border border-[#E5E0D8] **hidden**">
             
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
                 
@@ -78,14 +78,14 @@
                             {% endif %}
                         </div>
                         
-                        <h1 id="article-title" class="text-3xl font-extrabold text-black leading-snug mb-4 border-b pb-4">
+                        <h1 id="product-name" class="text-3xl font-extrabold text-black leading-snug mb-4 border-b pb-4">
                             {{ product.name }}
                         </h1>
                         
                         <div class="space-y-2 text-sm text-gray-600 mb-6">
-                            <p>Tanggal Dibuat: <time id="article-date" datetime="{{ product.created_at|date:'c' }}" class="font-medium">{{ product.created_at|date:"M j, Y g:i A" }}</time></p>
-                            <p>Dilihat: <span id="article-views" class="font-medium">{{ product.product_views }} kali</span></p>
-                            <p>Oleh: <span id="article-author" class="font-medium">{{ product.user.username|default:"Anonymous" }}</span></p>
+                            <p>Tanggal Dibuat: <time id="product-date" datetime="{{ product.created_at|date:'c' }}" class="font-medium">{{ product.created_at|date:"M j, Y g:i A" }}</time></p>
+                            <p>Dilihat: <span id="product-views" class="font-medium">{{ product.product_views }} kali</span></p>
+                            <p>Seller: <span id="product-seller" class="font-medium">{{ product.user.username|default:"Anonymous" }}</span></p>
                         </div>
                     </div>
 
@@ -113,7 +113,7 @@
             <div class="pt-8 mt-8 border-t border-[#E5E0D8]">
                 <h2 class="text-xl font-extrabold text-black mb-4">Detail Produk</h2>
                 <div class="prose max-w-none">
-                    <div id="article-content-text" class="text-gray-700 leading-relaxed whitespace-pre-line text-base sm:text-lg">
+                    <div id="product-description-text" class="text-gray-700 leading-relaxed whitespace-pre-line text-base sm:text-lg">
                         {{ product.description }}
                     </div>
                 </div>
@@ -129,23 +129,24 @@ const PRODUCT_ID = "{{ product.id }}";
 const PRODUCT_DETAIL_ENDPOINT = `{% url 'main:show_json_by_id' '00000000-0000-0000-0000-000000000000' %}`.replace('00000000-0000-0000-0000-000000000000', PRODUCT_ID);
 
 // DOM Elements
+
 const loadingState = document.getElementById('loading-state');
 const errorState = document.getElementById('error-state');
-const articleContent = document.getElementById('article-content');
+const productDescription = document.getElementById('product-description');
 const badgesContainer = document.getElementById('badges-container');
-const articleName = document.getElementById('article-name');
-const articleDate = document.getElementById('article-date');
-const articleViews = document.getElementById('article-views');
+const productName = document.getElementById('product-name');
+const productDate = document.getElementById('product-date');
+const productViews = document.getElementById('product-views');
 const featuredImageContainer = document.getElementById('featured-image-container');
 const featuredImage = document.getElementById('featured-image');
-const articleContentText = document.getElementById('article-content-text');
-const articleAuthor = document.getElementById('article-author');
+const productContentText = document.getElementById('product-description-text');
+const productSeller = document.getElementById('product-seller');
 
 // Show/hide page sections
 function showState(state) {
     loadingState.classList.toggle('hidden', state !== 'loading');
     errorState.classList.toggle('hidden', state !== 'error');
-    articleContent.classList.toggle('hidden', state !== 'ready');
+    productDescription.classList.toggle('hidden', state !== 'ready');
 }
 
 // Get readable category name
@@ -164,8 +165,8 @@ function getCategoryLabel(categoryCode) {
 // Render article content
 function renderArticle(product) {
     // Set name
-    articleName.textContent = product.name;
-    document.name = `${product.name} - Football Product`;
+    productName.textContent = product.name;
+    document.title = `${product.name} - Football Product`;
     
     // Set badges
     badgesContainer.innerHTML = '';
@@ -200,8 +201,8 @@ function renderArticle(product) {
         hour: '2-digit',
         minute: '2-digit'
     });
-    articleDate.textContent = formattedDate;
-    articleViews.textContent = `${product.product_views} views`;
+    productDate.textContent = formattedDate;
+    productViews.textContent = `${product.product_views} views`;
     
     // Set featured image
     if (product.thumbnail) {
@@ -213,11 +214,11 @@ function renderArticle(product) {
     }
     
     // Set content
-    articleContentText.textContent = product.content;
+    productContentText.textContent = product.content;
     
     // Set author
     const authorName = product.user_username || 'Anonymous';
-    articleAuthor.textContent = `Author: ${authorName}`;
+    productSeller.textContent = ` ${authorName}`;
 }
 
 // Fetch product detail
